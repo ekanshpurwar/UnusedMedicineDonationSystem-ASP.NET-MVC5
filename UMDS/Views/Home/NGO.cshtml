@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "NGO";
+}
+
+<h2>NGO</h2>
+<h3>Login</h3>
+@using (Html.BeginForm())
+{
+
+    <p>Email</p>
+    @Html.TextBox("Email")
+
+    <p>Password</p>
+    @Html.Password("Password")
+    <br />
+    <br />
+    <input type="submit" value="Login" class="btn btn-primary"/>
+}
+<br />
+<p>Click here to @Html.ActionLink("Sign Up", "NGOSignUp",null,htmlAttributes: new { @class="btn btn-success"})</p>

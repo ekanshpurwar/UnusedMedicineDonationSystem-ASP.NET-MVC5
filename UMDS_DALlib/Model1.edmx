@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UmdsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Donor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aadhar" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pin" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Enquiry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FinalRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Medicine_Id" Type="int" Nullable="false" />
+          <Property Name="MedicineName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="NGO_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medicine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DonationDate" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExpiryDate" Type="date" Nullable="false" />
+          <Property Name="PharmaCompany" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Donor_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NGO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pin" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Medicine_Id" Type="int" Nullable="false" />
+          <Property Name="MedicineName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="NGO_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__FinalRequ__Medic__19DFD96B">
+          <End Role="Medicine" Type="Self.Medicine" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FinalRequest" Type="Self.FinalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FinalRequest">
+              <PropertyRef Name="Medicine_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FinalRequ__NGO_I__06CD04F7">
+          <End Role="NGO" Type="Self.NGO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FinalRequest" Type="Self.FinalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FinalRequest">
+              <PropertyRef Name="NGO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Medicine__Donor___1BC821DD">
+          <End Role="Donor" Type="Self.Donor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Medicine" Type="Self.Medicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medicine">
+              <PropertyRef Name="Donor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Medicin__1CBC4616">
+          <End Role="Medicine" Type="Self.Medicine" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Medicine_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__NGO_Id__6754599E">
+          <End Role="NGO" Type="Self.NGO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="NGO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UmdsDBModelStoreContainer">
+          <EntitySet Name="Donor" EntityType="Self.Donor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enquiry" EntityType="Self.Enquiry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinalRequest" EntityType="Self.FinalRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicine" EntityType="Self.Medicine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NGO" EntityType="Self.NGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__FinalRequ__Medic__19DFD96B" Association="Self.FK__FinalRequ__Medic__19DFD96B">
+            <End Role="Medicine" EntitySet="Medicine" />
+            <End Role="FinalRequest" EntitySet="FinalRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FinalRequ__NGO_I__06CD04F7" Association="Self.FK__FinalRequ__NGO_I__06CD04F7">
+            <End Role="NGO" EntitySet="NGO" />
+            <End Role="FinalRequest" EntitySet="FinalRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Medicine__Donor___1BC821DD" Association="Self.FK__Medicine__Donor___1BC821DD">
+            <End Role="Donor" EntitySet="Donor" />
+            <End Role="Medicine" EntitySet="Medicine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Medicin__1CBC4616" Association="Self.FK__Request__Medicin__1CBC4616">
+            <End Role="Medicine" EntitySet="Medicine" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__NGO_Id__6754599E" Association="Self.FK__Request__NGO_Id__6754599E">
+            <End Role="NGO" EntitySet="NGO" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UmdsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Donor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Aadhar" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pin" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Medicines" Relationship="Self.FK__Medicine__Donor___25869641" FromRole="Donor" ToRole="Medicine" />
+        </EntityType>
+        <EntityType Name="Medicine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PharmaCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Donor_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Donor" Relationship="Self.FK__Medicine__Donor___25869641" FromRole="Medicine" ToRole="Donor" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Request__Medicin__2A4B4B5E" FromRole="Medicine" ToRole="Request" />
+          <NavigationProperty Name="FinalRequests" Relationship="UmdsDBModel.FK__FinalRequ__Medic__03F0984C" FromRole="Medicine" ToRole="FinalRequest" />
+          <Property Name="DonationDate" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="NGO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pin" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Request__NGO_Id__2B3F6F97" FromRole="NGO" ToRole="Request" />
+          <NavigationProperty Name="FinalRequests" Relationship="UmdsDBModel.FK__FinalRequ__NGO_I__02FC7413" FromRole="NGO" ToRole="FinalRequest" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Medicine_Id" Type="Int32" Nullable="false" />
+          <Property Name="MedicineName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="NGO_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Medicine" Relationship="Self.FK__Request__Medicin__2A4B4B5E" FromRole="Request" ToRole="Medicine" />
+          <NavigationProperty Name="NGO" Relationship="Self.FK__Request__NGO_Id__2B3F6F97" FromRole="Request" ToRole="NGO" />
+        </EntityType>
+        <Association Name="FK__Medicine__Donor___25869641">
+          <End Role="Donor" Type="Self.Donor" Multiplicity="1" />
+          <End Role="Medicine" Type="Self.Medicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medicine">
+              <PropertyRef Name="Donor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Medicin__2A4B4B5E">
+          <End Role="Medicine" Type="Self.Medicine" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Medicine_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__NGO_Id__2B3F6F97">
+          <End Role="NGO" Type="Self.NGO" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="NGO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UmdsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Donors" EntityType="Self.Donor" />
+          <EntitySet Name="Medicines" EntityType="Self.Medicine" />
+          <EntitySet Name="NGOes" EntityType="Self.NGO" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <AssociationSet Name="FK__Medicine__Donor___25869641" Association="Self.FK__Medicine__Donor___25869641">
+            <End Role="Donor" EntitySet="Donors" />
+            <End Role="Medicine" EntitySet="Medicines" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Medicin__2A4B4B5E" Association="Self.FK__Request__Medicin__2A4B4B5E">
+            <End Role="Medicine" EntitySet="Medicines" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__NGO_Id__2B3F6F97" Association="Self.FK__Request__NGO_Id__2B3F6F97">
+            <End Role="NGO" EntitySet="NGOes" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <EntitySet Name="FinalRequests" EntityType="UmdsDBModel.FinalRequest" />
+          <AssociationSet Name="FK__FinalRequ__Medic__03F0984C" Association="UmdsDBModel.FK__FinalRequ__Medic__03F0984C">
+            <End Role="Medicine" EntitySet="Medicines" />
+            <End Role="FinalRequest" EntitySet="FinalRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FinalRequ__NGO_I__02FC7413" Association="UmdsDBModel.FK__FinalRequ__NGO_I__02FC7413">
+            <End Role="NGO" EntitySet="NGOes" />
+            <End Role="FinalRequest" EntitySet="FinalRequests" />
+          </AssociationSet>
+          <EntitySet Name="Enquiries" EntityType="UmdsDBModel.Enquiry" />
+        </EntityContainer>
+        <EntityType Name="FinalRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Medicine_Id" Type="Int32" Nullable="false" />
+          <Property Name="MedicineName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="NGO_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Medicine" Relationship="UmdsDBModel.FK__FinalRequ__Medic__03F0984C" FromRole="FinalRequest" ToRole="Medicine" />
+          <NavigationProperty Name="NGO" Relationship="UmdsDBModel.FK__FinalRequ__NGO_I__02FC7413" FromRole="FinalRequest" ToRole="NGO" />
+        </EntityType>
+        <Association Name="FK__FinalRequ__Medic__03F0984C">
+          <End Type="UmdsDBModel.Medicine" Role="Medicine" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="UmdsDBModel.FinalRequest" Role="FinalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FinalRequest">
+              <PropertyRef Name="Medicine_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FinalRequ__NGO_I__02FC7413">
+          <End Type="UmdsDBModel.NGO" Role="NGO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="UmdsDBModel.FinalRequest" Role="FinalRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGO">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FinalRequest">
+              <PropertyRef Name="NGO_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Enquiry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UmdsDBModelStoreContainer" CdmEntityContainer="UmdsDBEntities">
+          <EntitySetMapping Name="Donors">
+            <EntityTypeMapping TypeName="UmdsDBModel.Donor">
+              <MappingFragment StoreEntitySet="Donor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Aadhar" ColumnName="Aadhar" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicines">
+            <EntityTypeMapping TypeName="UmdsDBModel.Medicine">
+              <MappingFragment StoreEntitySet="Medicine">
+                <ScalarProperty Name="DonationDate" ColumnName="DonationDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="PharmaCompany" ColumnName="PharmaCompany" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Donor_Id" ColumnName="Donor_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGOes">
+            <EntityTypeMapping TypeName="UmdsDBModel.NGO">
+              <MappingFragment StoreEntitySet="NGO">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="UmdsDBModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Medicine_Id" ColumnName="Medicine_Id" />
+                <ScalarProperty Name="MedicineName" ColumnName="MedicineName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="NGO_Id" ColumnName="NGO_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinalRequests">
+            <EntityTypeMapping TypeName="UmdsDBModel.FinalRequest">
+              <MappingFragment StoreEntitySet="FinalRequest">
+                <ScalarProperty Name="NGO_Id" ColumnName="NGO_Id" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MedicineName" ColumnName="MedicineName" />
+                <ScalarProperty Name="Medicine_Id" ColumnName="Medicine_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enquiries">
+            <EntityTypeMapping TypeName="UmdsDBModel.Enquiry">
+              <MappingFragment StoreEntitySet="Enquiry">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

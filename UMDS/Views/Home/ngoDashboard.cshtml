@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "NGO Dashboard";
+}
+
+<h2>NGO Dashboard</h2>
+<br />
+<br />
+<br />
+<table class="table">
+    <tr>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">Request Medicine</h4>
+                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                    @Html.ActionLink("Request", "RequestMedicine",null,htmlAttributes:new { @class="btn btn-primary btn-block"})
+
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">Log out</h4>
+                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                    @Html.ActionLink("Log out", "NGOLogOut", null, htmlAttributes: new { @class = "btn btn-danger btn-block" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    
+</table>
+
+

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Donate";
+}
+
+<h2>Donate</h2>
+
+<h3>Login</h3>
+@using (Html.BeginForm())
+{
+
+    <p>Email</p>
+    @Html.TextBox("Email")
+    <p>Password</p>
+    <p>@Html.Password("Password")</p>
+    <p><input type="submit" value="Login" class="btn btn-primary" /></p>
+
+}
+<br />
+@if (ViewData["status"] != null)
+{
+    <p>@ViewData["status"].ToString()</p>
+
+}
+<p>Click here to @Html.ActionLink("Sign Up", "SignUp", null, htmlAttributes: new { @class = "btn btn-success" })</p>
+
+

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "NGOSubmitRequest";
+}
+@*<script src="jquery-1.9.1.min.js"></script>*@
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@*<script>
+    jQuery(document).ready(function ($) {
+
+
+
+        //Use this inside your document ready jQuery
+        $(window).on('popstate', function () {
+            location.reload(true);
+        });
+
+
+
+        $(window).on("load", function () {
+            alert("loaded");
+        });
+
+
+
+    });
+</script>*@
+<h1>Thank You!</h1>
+<h2>Request Placed Successfully</h2>
+<h3>You will shortly recieve an email from UMDS regarding Delivery</h3>
+<br />
+@Html.ActionLink("Home", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })

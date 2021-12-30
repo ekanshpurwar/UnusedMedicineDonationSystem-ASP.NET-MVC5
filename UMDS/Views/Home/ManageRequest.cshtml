@@ -1,0 +1,49 @@
+﻿@model IEnumerable<UMDS_DALlib.FinalRequest>
+
+@{
+    ViewBag.Title = "ManageRequest";
+}
+
+<h2>Manage Request</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Medicine_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGO_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Medicine_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicineName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGO_Id)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            @Html.ActionLink("Delete", "DeleteFinalRequest", new { id=item.Id }, htmlAttributes:new {@class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

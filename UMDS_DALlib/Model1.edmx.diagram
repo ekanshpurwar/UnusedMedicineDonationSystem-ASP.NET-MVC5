@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7b74871f2c784d339cb50a997f279983" Name="Diagram1">
+        <EntityTypeShape EntityType="UmdsDBModel.Donor" Width="1.5" PointX="0.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UmdsDBModel.Medicine" Width="1.5" PointX="1" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="UmdsDBModel.NGO" Width="1.5" PointX="3.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UmdsDBModel.Request" Width="1.5" PointX="3.25" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="UmdsDBModel.FK__Medicine__Donor___25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="UmdsDBModel.FK__Request__Medicin__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="UmdsDBModel.FK__Request__NGO_Id__2B3F6F97" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="UmdsDBModel.FinalRequest" Width="1.5" PointX="5.75" PointY="3.25" />
+        <AssociationConnector Association="UmdsDBModel.FK__FinalRequ__Medic__03F0984C" />
+        <AssociationConnector Association="UmdsDBModel.FK__FinalRequ__NGO_I__02FC7413" />
+        <EntityTypeShape EntityType="UmdsDBModel.Enquiry" Width="1.5" PointX="5.625" PointY="0.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

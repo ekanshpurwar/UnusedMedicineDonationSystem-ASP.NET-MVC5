@@ -1,0 +1,69 @@
+﻿@model UMDS_DALlib.Medicine
+
+@{
+    ViewBag.Title = "DonationApproval";
+}
+
+<h2>Donation Approval Reciept</h2>
+
+<div>
+    <h4>Medicine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PharmaCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PharmaCompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Donor_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Donor_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonationDate)
+        </dd>
+
+    </dl>
+</div>
+<h3>Your Donation is Successfully Registered</h3>
+<h4 style="color:red">Note Your Donor Id for further reference</h4>
+<p>You will receive an e-mail shortly from UMDS regarding Pickup details</p>
+@Html.ActionLink("Click to Donate More", "DonateMedicines", null, htmlAttributes: new { @class = "btn btn-warning" })
+<br />
+<br />
+@Html.ActionLink("Home", "Index", null, htmlAttributes: new { @class = "btn btn-success" })

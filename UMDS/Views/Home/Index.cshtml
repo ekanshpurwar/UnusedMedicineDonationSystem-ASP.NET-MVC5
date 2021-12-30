@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<center><h1>Unused Medicines Donation System</h1></center>
+<div class="container" style="border-radius: 25px; border: 2px solid grey; padding: 50px; width: auto; height: auto; margin-top:100px">
+    
+    <h2>Donate Medicines! Save Lives!</h2>
+    <h3>
+        We save medicine to save lives. You can help.
+    </h3>
+    <br />
+    <p>
+        To tackle and prevent situation of shortage of Medicine we introduce the Online Unused Medicine Donation System (UMDS),
+        <br />where you can donate the unused Medicine left with you. Your little step of kindness can help someone to battle against Covid-19.
+        <br />Let’s get together in this fight against Global Pandemic.
+    </p>
+    <br />
+    <p>@Html.ActionLink("Let's Donate!", "DonorDashboard", new { userType = "Donor" }, htmlAttributes:new { @class="btn btn-primary"})</p>
+    
+</div>

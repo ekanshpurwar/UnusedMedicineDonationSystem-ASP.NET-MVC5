@@ -1,0 +1,103 @@
+﻿@model UMDS_DALlib.Enquiry
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+
+
+    <style>
+        table {
+            width: 100%;
+            text-align: center;
+            padding: 20%;
+        }
+    </style>
+    <table>
+        <tr>
+            <td>&nbsp</td>
+            <td><h1>Contact Us</h1></td>
+            <td>&nbsp</td>
+
+        </tr>
+        <tr>
+            <td>&nbsp</td>
+            <td><h4>For more information, You can reach us... We love to hear from you.</h4></td>
+            <td>&nbsp</td>
+
+        </tr>
+        <tr>
+            <td>&nbsp</td>
+            <td>&nbsp</td>
+            <td>&nbsp</td>
+        </tr>
+        <tr>
+            <td>&nbsp</td>
+            <td>&nbsp</td>
+            <td>&nbsp</td>
+        </tr>
+        <tr>
+            <td><h3>Email</h3></td>
+            <td><h3>Address</h3></td>
+            <td><h3> Call Us</h3></td>
+        </tr>
+        <tr>
+            <td><h4>umds@gmail.com</h4></td>
+            <td><h4>UMDS Noida, Sector-52, UP</h4></td>
+            <td><h4>9988776655</h4></td>
+        </tr>
+        <tr>
+            <td>
+                
+            </td>
+        </tr>
+    </table>
+<hr />
+<br /><br />
+    <div class="container">
+        <h2>Get in Touch by filling the form!</h2>
+        <br /><br />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+   
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

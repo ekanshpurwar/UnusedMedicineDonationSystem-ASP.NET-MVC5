@@ -1,0 +1,72 @@
+﻿
+
+@{
+    ViewBag.Title = "AdminDashboard";
+}
+
+<h1>Welcome Admin</h1>
+<h2>Dashboard</h2>
+@*<p align="right"></p>*@
+
+<table class="table">
+    <tr>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">Donors</h4>
+                    <p class="card-text">Get All Records of Donor here. You can modify records by Edit and Delete</p>
+                    @Html.ActionLink("Manage", "ManageDonors", null, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">NGOes</h4>
+                    <p class="card-text">Get All Records of NGO here. You can modify records by Edit and Delete</p>
+                    @Html.ActionLink("Manage", "ManageNGOes", null, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">Enquiries</h4>
+                    <p class="card-text">Get All Records of Enquiries here. You can remove records by Delete</p>
+                    @Html.ActionLink("Manage", "ManageEnquiries", null, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">Requests</h4>
+                    <p class="card-text">Get All Records of Final Request here. You can remove records by Delete</p>
+                    @Html.ActionLink("Manage", "ManageRequest", null, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">Medicine</h4>
+                    <p class="card-text">Get All Records of Medicine here. You can modify records by Edit and Delete</p>
+                    @Html.ActionLink("Manage", "ManageMedicine", null, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">Log Out</h4>
+                    <p class="card-text">Log Out from the current session</p>
+                    @Html.ActionLink("Log Out", "AdminLogOut", null, htmlAttributes: new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+

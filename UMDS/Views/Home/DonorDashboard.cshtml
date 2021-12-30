@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "DonorDashboard";
+    
+}
+<script>
+    $(document).ready(function () {
+        $("#b2").click(getAllNGOes);
+    });
+</script>
+
+
+<h2>Dashboard</h2>
+<h3 style="color:blue">Welcome @Session["donorName"].ToString()</h3>
+@*@Html.ActionLink("View NGOes", "ViewNGOes")<br />*@
+<br /><br /><br />
+<table class="table">
+    <tr>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">Donate Medicines</h4>
+                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                    @Html.ActionLink("Donate Medicines", "DonateMedicines", null, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">My Donations</h4>
+                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                    @Html.ActionLink("My Donations", "MyDonations", null, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">View NGOes</h4>
+                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                    <input type="button" id="b2" value="View NGOes" class="btn btn-primary" />
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="card" style="width:400px">
+                <div class="card-body">
+                    <h4 class="card-title">Log Out</h4>
+                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                    @Html.ActionLink("Log Out", "DonorLogOut", null, htmlAttributes: new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<h3 id="h3"></h3>
+<div id="d1">
+</div>
+<br /><br /><br />

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+@if (ViewData["userType"] != null)
+{
+    <center><h1>@ViewData["userType"].ToString()</h1></center>
+
+}
+
+
+<div class="container" style="border-radius: 25px; border: 2px solid grey; padding: 20px; width: auto; height: auto; ">
+    <h2>Login</h2><br />
+    @using (Html.BeginForm())
+    {
+        <div class="form-floating mb-3 mt-3">
+            @Html.Label("Email:")
+            @Html.TextBox("Email", null, htmlAttributes: new { @class = "form-control", @placeholder = "Enter email" })
+        </div>
+        <br />
+        <div class="form-floating mb-3 mt-3">
+            @Html.Label("Password:")
+            @Html.Password("Password", null, htmlAttributes: new { @class = "form-control", @placeholder = "Enter password" })
+        </div>
+
+        if (ViewData["userType"] != null)
+        {
+            <p>@Html.Hidden("userType", ViewData["userType"].ToString())</p>
+
+        }
+        <br>
+        <p><input type="submit" value="Login" class="btn btn-primary" /></p>
+
+    }
+    <br />
+
+    @if (ViewData["userType"] != null)
+    {
+        if (ViewData["userType"].ToString() != "Admin")
+        {
+            <h4>New @ViewData["userType"].ToString()? @Html.ActionLink("Sign Up", ViewData["userType"] + "SignUp", null, htmlAttributes: new { @class = "btn btn-success" })</h4>
+
+        }
+    }
+    <br />
+
+</div>
+@if (ViewData["status"] != null)
+{
+    <h3 style="color:red">@ViewData["status"].ToString()</h3>
+
+}

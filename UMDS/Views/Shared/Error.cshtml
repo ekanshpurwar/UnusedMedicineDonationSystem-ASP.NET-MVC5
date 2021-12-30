@@ -1,0 +1,40 @@
+﻿@model  System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+
+<h1>Error</h1>
+<h2>An error occurred while processing your request.</h2>
+<hr />
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Exception)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exception.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ControllerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ControllerName)
+        </dd>
+
+    </dl>
+</div>
+<p>@Html.ActionLink("Go to Home","Index",null,htmlAttributes:new { @class="btn btn-primary"})</p>
